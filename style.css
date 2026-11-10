@@ -2481,7 +2481,7 @@ section {
 #chatToggle {
     position: fixed;
     right: 25px;
-    bottom: 25px;
+    top: 25px;
     z-index: 9999;
 
     display: flex;
@@ -2516,7 +2516,8 @@ section {
 @media (max-width: 600px) {
     #chatToggle {
         right: 15px;
-        bottom: 15px;
+        top: 15px;
+        bottom: auto;
         padding: 12px 16px;
     }
 }
