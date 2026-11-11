@@ -1,0 +1,60 @@
+
+{
+  "academicAchievements": [
+    {
+      "id": 1,
+      "semester": "Spring 2026",
+      "resultType": "Semester GPA",
+      "gpa": "4.00",
+      "institution": "Daffodil International University",
+      "department": "Software Engineering",
+      "description": "Achieved a perfect semester GPA of 4.00."
+    }
+  ],
+  "certificates": [
+  {
+    "id": 1,
+    "title": "Computer Architecture",
+    "pdf": "computer-architecture.pdf",
+    "description": "Certificate in Computer Architecture."
+  },
+  {
+    "id": 2,
+    "title": "Database Systems and SQL",
+    "pdf": "database-systems-sql.pdf",
+    "description": "Certificate in Database Systems and SQL."
+  },
+  {
+    "id": 3,
+    "title": "Discrete Mathematics",
+    "pdf": "discrete-mathematics.pdf",
+    "description": "Certificate in Discrete Mathematics."
+  },
+  {
+    "id": 4,
+    "title": "DIU Day Long Seminar",
+    "pdf": "diu-seminar.pdf",
+    "description": "Certificate of participation in a DIU day-long seminar."
+  },
+  {
+    "id": 5,
+    "title": "SQL Server",
+    "pdf": "sql-server.pdf",
+    "description": "Certificate related to SQL Server."
+  }
+],
+  "latestUpdates": [
+    {
+      "id": 1,
+      "category": "Academic Achievement",
+      "title": "Achieved 4.00 GPA",
+      "description": "Achieved a semester GPA of 4.00 in Spring 2026."
+    },
+    {
+      "id": 2,
+      "category": "Portfolio Development",
+      "title": "Personal Portfolio Website Deployed",
+      "description": "Successfully developed and deployed my personal portfolio website using HTML, CSS and JavaScript."
+    }
+  ]
+}
