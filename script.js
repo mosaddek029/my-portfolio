@@ -404,3 +404,41 @@ fetch("data.json")
     .catch(error => {
         console.error("JSON Error:", error);
     });
+// =================================
+// Active Sidebar Navigation
+// =================================
+
+const pageSections = document.querySelectorAll("section[id]");
+const sidebarLinks = document.querySelectorAll(
+    ".nav-links a[href^='#']"
+);
+
+function updateActiveNavigation() {
+
+    let currentSection = "home";
+
+    pageSections.forEach(section => {
+
+        const sectionTop = section.offsetTop;
+
+        if (window.scrollY >= sectionTop - 200) {
+            currentSection = section.getAttribute("id");
+        }
+
+    });
+
+    sidebarLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === `#${currentSection}`) {
+            link.classList.add("active");
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", updateActiveNavigation);
+
+updateActiveNavigation();
