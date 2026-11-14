@@ -6339,3 +6339,822 @@ body:not(.light-mode) .theme-button {
     background: #293b52;
     border: 1px solid #455a73;
 }
+/* Education Cards Spacing */
+
+.education-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.education-card {
+    margin-bottom: 0;
+}
+
+/* =========================================
+   PREMIUM EDUCATION CARDS
+========================================= */
+
+.education-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 950px;
+    margin: 50px auto;
+}
+
+/* Main Card */
+
+.education-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+
+    padding: 32px;
+    margin: 0;
+
+    background: linear-gradient(
+        135deg,
+        #222f40,
+        #192638
+    );
+
+    border: 1px solid rgba(145, 189, 240, 0.22);
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    overflow: hidden;
+
+    transition: all 0.35s ease;
+}
+
+/* Decorative left accent */
+
+.education-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background: linear-gradient(
+        to bottom,
+        #91bdf0,
+        #4d83c5
+    );
+
+    border-radius: 20px 0 0 20px;
+}
+
+/* Decorative background glow */
+
+.education-card::after {
+    content: "";
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -80px;
+
+    background: rgba(100, 160, 230, 0.09);
+    border-radius: 50%;
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+/* Hover Effect */
+
+.education-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #91bdf0;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.30),
+        0 0 20px rgba(100, 160, 230, 0.12);
+}
+
+/* Education Icon */
+
+.education-icon {
+    position: relative;
+    z-index: 1;
+
+    min-width: 65px;
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #304e70,
+        #20344c
+    );
+
+    border: 1px solid rgba(145, 189, 240, 0.35);
+    border-radius: 18px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+    transition: 0.35s ease;
+}
+
+.education-card:hover .education-icon {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+/* Education Information */
+
+.education-info {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+.education-date {
+    display: inline-block;
+
+    padding: 7px 14px;
+    margin-bottom: 14px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+
+    color: #a9cefa;
+    background: rgba(145, 189, 240, 0.12);
+
+    border: 1px solid rgba(145, 189, 240, 0.25);
+    border-radius: 30px;
+}
+
+.education-info h3 {
+    font-size: 21px;
+    font-weight: 700;
+
+    color: #ffffff;
+
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.education-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #91bdf0;
+
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+
+.education-info p {
+    color: #c0cad7;
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    margin-bottom: 8px;
+}
+
+/* GPA Highlight */
+
+.education-info p strong {
+    display: inline-block;
+
+    margin-top: 8px;
+    padding: 8px 16px;
+
+    color: #a9cefa;
+    background: rgba(145, 189, 240, 0.13);
+
+    border: 1px solid rgba(145, 189, 240, 0.3);
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   LIGHT MODE
+========================================= */
+
+body.light-mode .education-card {
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #f0f5fc
+    );
+
+    border-color: rgba(65, 120, 190, 0.2);
+
+    box-shadow:
+        0 10px 30px rgba(30, 60, 100, 0.08),
+        inset 0 1px 0 #ffffff;
+}
+
+body.light-mode .education-card:hover {
+    border-color: #6c9ed5;
+
+    box-shadow:
+        0 18px 35px rgba(40, 90, 150, 0.15);
+}
+
+body.light-mode .education-icon {
+    background: linear-gradient(
+        135deg,
+        #e1edfb,
+        #c9def6
+    );
+
+    border-color: #b5d0ef;
+}
+
+body.light-mode .education-info h3 {
+    color: #1b2b40;
+}
+
+body.light-mode .education-info h4 {
+    color: #3975b8;
+}
+
+body.light-mode .education-info p {
+    color: #536477;
+}
+
+body.light-mode .education-date {
+    color: #3975b8;
+    background: #e8f1fc;
+    border-color: #c7dcf5;
+}
+
+body.light-mode .education-info p strong {
+    color: #3975b8;
+    background: #e8f1fc;
+    border-color: #c7dcf5;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+
+    .education-container {
+        gap: 22px;
+        margin: 30px auto;
+        padding: 0 10px;
+    }
+
+    .education-card {
+        padding: 23px 18px;
+        gap: 15px;
+        border-radius: 16px;
+    }
+
+    .education-icon {
+        min-width: 48px;
+        width: 48px;
+        height: 48px;
+        font-size: 23px;
+        border-radius: 13px;
+    }
+
+    .education-info h3 {
+        font-size: 17px;
+    }
+
+    .education-info h4 {
+        font-size: 14px;
+    }
+
+    .education-info p {
+        font-size: 13px;
+    }
+
+    .education-date {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+}
+
+/* =========================================
+   UNIFIED BLUE LEFT ACCENT
+   ========================================= */
+
+#about .about-content,
+#about .detail-card,
+
+#skills .skill-category,
+#skills .skill-card,
+
+#achievements .achievement-card,
+#achievements .academic-gpa-card,
+
+#certificates .certificate-card,
+
+#contact .contact-info,
+#contact .contact-form,
+#contact .contact-item,
+
+#journey .timeline-card,
+#projects .project-card,
+#research .research-card,
+.update-card {
+
+    border-left: 5px solid #79A5DE !important;
+
+    border-radius: 16px !important;
+
+    transition: border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease;
+}
+
+/* Blue accent hover effect */
+
+#about .about-content:hover,
+#about .detail-card:hover,
+#skills .skill-category:hover,
+#skills .skill-card:hover,
+#achievements .achievement-card:hover,
+#achievements .academic-gpa-card:hover,
+#certificates .certificate-card:hover,
+#contact .contact-info:hover,
+#contact .contact-form:hover,
+#contact .contact-item:hover,
+#journey .timeline-card:hover,
+#projects .project-card:hover,
+#research .research-card:hover,
+.update-card:hover {
+
+    border-left-color: #A9CEFA !important;
+
+    box-shadow: 0 10px 30px rgba(121, 165, 222, 0.13);
+}
+
+
+/* =========================================
+   PREMIUM SIDEBAR NAVIGATION ITEMS
+========================================= */
+
+/* Space between individual menu items */
+
+.sidebar .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px !important;
+
+    padding: 10px !important;
+
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Each navigation item */
+
+.sidebar .nav-links a {
+    display: flex !important;
+    align-items: center;
+
+    width: 100%;
+    min-height: 50px;
+
+    padding: 14px 16px !important;
+
+    background: #223246 !important;
+
+    border: 1px solid #3c5874 !important;
+    border-left: 4px solid #79A5DE !important;
+
+    border-radius: 12px !important;
+
+    color: #c3d0df !important;
+
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+
+.sidebar .nav-links a:hover {
+    background: #304760 !important;
+
+    border-color: #79A5DE !important;
+
+    color: #a9cefa !important;
+
+    transform: translateX(5px);
+
+    box-shadow: 0 5px 15px rgba(121, 165, 222, 0.12);
+}
+
+/* Active navigation item */
+
+.sidebar .nav-links a.active {
+    background: linear-gradient(
+        135deg,
+        #304760,
+        #263b53
+    ) !important;
+
+    border-color: #79A5DE !important;
+
+    color: #a9cefa !important;
+
+    box-shadow: 0 5px 18px rgba(121, 165, 222, 0.15);
+}
+
+/* Light mode */
+
+body.light-mode .sidebar .nav-links a {
+    background: #ffffff !important;
+    color: #304760 !important;
+    border-color: #c7d8eb !important;
+    border-left: 4px solid #79A5DE !important;
+}
+
+body.light-mode .sidebar .nav-links a:hover,
+body.light-mode .sidebar .nav-links a.active {
+    background: #e8f1fc !important;
+    color: #28619d !important;
+    border-color: #79A5DE !important;
+}
+
+/* Mobile adjustment */
+
+@media (max-width: 768px) {
+    .sidebar .nav-links {
+        gap: 8px !important;
+    }
+
+    .sidebar .nav-links a {
+        min-height: 45px;
+        padding: 12px !important;
+    }
+}
+
+/* =========================================
+   FIX RIGHT SIDE - ABOUT ME PANEL ONLY
+========================================= */
+
+#about .about-content {
+    position: relative !important;
+
+    background: linear-gradient(
+        145deg,
+        #223246,
+        #1c2b3e
+    ) !important;
+
+    /* Complete border instead of one vertical line */
+    border: 1px solid #496987 !important;
+    border-left: 1px solid #496987 !important;
+
+    border-radius: 18px !important;
+
+    padding: 35px !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Remove unwanted decorative lines */
+
+#about .about-content::before,
+#about .about-content::after {
+    display: none !important;
+}
+
+/* Hover effect */
+
+#about .about-content:hover {
+    border-color: #79A5DE !important;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.22),
+        0 0 15px rgba(121, 165, 222, 0.10) !important;
+}
+
+/* About Me heading */
+
+#about .about-content h3 {
+    color: #f4f7fc !important;
+    margin-bottom: 22px;
+}
+
+/* About Me paragraphs */
+
+#about .about-content p {
+    color: #c3d0df !important;
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+/* Light mode */
+
+body.light-mode #about .about-content {
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f0f5fc
+    ) !important;
+
+    border: 1px solid #c7d8eb !important;
+    border-left: 1px solid #c7d8eb !important;
+}
+
+body.light-mode #about .about-content h3 {
+    color: #1c3048 !important;
+}
+
+body.light-mode #about .about-content p {
+    color: #53677e !important;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    #about .about-content {
+        padding: 23px !important;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE SIDEBAR FIX
+   ========================================== */
+
+/* Tablet and restored browser windows */
+
+@media screen and (max-width: 1100px) {
+
+    /* Make sidebar compact */
+    .sidebar {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+
+        top: 0 !important;
+        left: 0 !important;
+
+        padding: 12px 18px !important;
+
+        border-left: none !important;
+        border-bottom: 2px solid #79A5DE !important;
+
+        z-index: 1000;
+    }
+
+    /* Navigation layout */
+    .sidebar .navbar {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        width: 100% !important;
+        height: auto !important;
+
+        padding: 12px !important;
+
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    /* Keep logo visible */
+    .sidebar .logo {
+        margin-right: auto;
+    }
+
+    /* Show menu toggle */
+    .sidebar .menu-toggle {
+        display: block !important;
+        order: 2;
+    }
+
+    /* Hide navigation until menu is opened */
+    .sidebar .nav-links {
+        display: none !important;
+
+        width: 100% !important;
+        flex-direction: column !important;
+
+        margin-top: 15px !important;
+        padding: 10px !important;
+
+        background: #172638 !important;
+        border: 1px solid #3c5874 !important;
+        border-radius: 14px !important;
+    }
+
+    /* Open menu when JavaScript adds active class */
+    .sidebar .nav-links.active {
+        display: flex !important;
+    }
+
+    /* Compact navigation items */
+    .sidebar .nav-links a {
+        width: 100% !important;
+        min-height: 42px !important;
+
+        padding: 11px 14px !important;
+        font-size: 13px !important;
+    }
+
+    /* Theme button */
+    .sidebar .theme-button {
+        order: 3;
+        margin-left: 10px;
+    }
+
+    /* Hide sidebar footer */
+    .sidebar .sidebar-footer {
+        display: none !important;
+    }
+
+    /* Main content uses full width */
+    main {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    /* Remove unwanted horizontal scrolling */
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+
+/* ==========================================
+   SMALL MOBILE SCREENS
+   ========================================== */
+
+@media screen and (max-width: 600px) {
+
+    .sidebar {
+        padding: 8px 12px !important;
+    }
+
+    .sidebar .navbar {
+        gap: 10px;
+    }
+
+    .sidebar .logo {
+        font-size: 20px;
+    }
+
+    .sidebar .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .sidebar .theme-button {
+        padding: 9px 12px !important;
+    }
+
+    section {
+        padding: 55px 5% !important;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+}
+
+/* Blue left accent for About Me panel */
+
+#about .about-content {
+    border-left: 5px solid #79A5DE !important;
+    border-radius: 18px !important;
+    padding: 35px 35px 35px 40px !important;
+}
+
+/* =====================================
+   SOCIAL MEDIA ICONS
+===================================== */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.social-links a {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 21px;
+    color: #a9cefa;
+
+    background: #223246;
+    border: 1px solid #496987;
+    border-radius: 50%;
+
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+    background: #3975b8;
+    border-color: #91bdf0;
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 6px 18px rgba(121, 165, 222, 0.25);
+}
+
+/* Light mode */
+
+body.light-mode .social-links a {
+    background: #ffffff;
+    color: #3975b8;
+    border-color: #c7d8eb;
+}
+
+body.light-mode .social-links a:hover {
+    background: #3975b8;
+    color: #ffffff;
+}
+
+/* SOCIAL MEDIA ICONS */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.social-links a {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #a9cefa;
+    background: #223246;
+
+    border: 1px solid #496987;
+    border-radius: 50%;
+
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links svg {
+    width: 23px;
+    height: 23px;
+    display: block;
+}
+
+.social-links a:hover {
+    color: white;
+    background: #3975b8;
+    border-color: #91bdf0;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(121, 165, 222, 0.25);
+}
+
+body.light-mode .social-links a {
+    background: #ffffff;
+    color: #3975b8;
+    border-color: #c7d8eb;
+}
