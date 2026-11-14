@@ -204,6 +204,7 @@ journeyItems.forEach((item) => {
 ================================= */
 
 const scrollProgress = document.getElementById("scrollProgress");
+const backToTop = document.getElementById("backToTop");
 
 // Update progress and button visibility
 window.addEventListener("scroll", () => {
