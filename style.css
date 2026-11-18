@@ -7241,3 +7241,225 @@ body.light-mode .social-links a {
         min-height: 95px;
     }
 }
+
+
+
+/* =========================================================
+   MOSADDEK PORTFOLIO — DOTTED BACKGROUND OVERRIDE
+   Added after the existing styles so it overrides old
+   opaque section backgrounds without changing the cards.
+========================================================= */
+
+/* Main canvas: dark navy with a subtle purple-blue glow */
+html,
+body {
+    min-height: 100%;
+    background-color: #0b1220 !important;
+}
+
+body {
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(165, 155, 205, 0.22) 1.15px,
+            transparent 1.45px
+        ),
+        radial-gradient(
+            ellipse at 72% 12%,
+            rgba(91, 64, 145, 0.22),
+            transparent 48%
+        ),
+        linear-gradient(
+            135deg,
+            #0b1220 0%,
+            #111827 48%,
+            #171326 100%
+        ) !important;
+    background-size: 27px 27px, 100% 100%, 100% 100% !important;
+    background-position: 0 0, center top, center !important;
+    background-attachment: fixed !important;
+}
+
+/* Let the page background show through all major sections.
+   The content cards keep their own existing backgrounds. */
+main,
+main > section,
+.about,
+.education,
+.skills,
+.journey-section,
+.projects-section,
+.achievements,
+.certificates-section,
+.research-section,
+.latest-updates-section,
+.contact,
+.footer {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Keep the sidebar distinct from the page canvas */
+.sidebar {
+    background: rgba(8, 14, 25, 0.96) !important;
+}
+
+/* Preserve the hero portrait, but let the dotted texture
+   remain visible through its dark gradient overlay. */
+.hero {
+    background: transparent !important;
+}
+
+.hero::before {
+    background:
+        radial-gradient(
+            circle,
+            rgba(165, 155, 205, 0.18) 1.1px,
+            transparent 1.45px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(11, 18, 32, 0.99) 0%,
+            rgba(11, 18, 32, 0.94) 32%,
+            rgba(11, 18, 32, 0.72) 58%,
+            rgba(11, 18, 32, 0.20) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(11, 18, 32, 0.92) 0%,
+            transparent 48%
+        ) !important;
+    background-size: 27px 27px, 100% 100%, 100% 100% !important;
+    background-position: 0 0, center, center !important;
+}
+
+/* Light theme: subtle grey-blue dots on a pale canvas */
+body.light-mode,
+body.light-mode html {
+    background-color: #edf2f8 !important;
+}
+
+body.light-mode {
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(70, 91, 125, 0.18) 1.1px,
+            transparent 1.45px
+        ),
+        linear-gradient(
+            135deg,
+            #f4f7fc 0%,
+            #eaf0f8 100%
+        ) !important;
+    background-size: 27px 27px, 100% 100% !important;
+    background-position: 0 0, center !important;
+    background-attachment: fixed !important;
+}
+
+/* Keep the hero readable in light mode as well */
+body.light-mode .hero::before {
+    background:
+        radial-gradient(
+            circle,
+            rgba(70, 91, 125, 0.13) 1.1px,
+            transparent 1.45px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(244, 247, 252, 0.98) 0%,
+            rgba(244, 247, 252, 0.92) 42%,
+            rgba(244, 247, 252, 0.55) 100%
+        ) !important;
+    background-size: 27px 27px, 100% 100% !important;
+}
+
+/* Keep the existing cards and panels above the background */
+.detail-card,
+.education-card,
+.skill-category,
+.skill-card,
+.timeline-card,
+.project-card,
+.achievement-card,
+.academic-gpa-card,
+.certificate-card,
+.research-card,
+.update-card,
+.contact-info,
+.contact-item,
+.contact-form {
+    position: relative;
+}
+/* PREMIUM SPARKLING CURSOR TRAIL */
+
+.cursor-trail-dot {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--dot-size, 8px);
+    height: var(--dot-size, 8px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        #d8c5ff 25%,
+        #a78bfa 55%,
+        transparent 100%
+    );
+
+    box-shadow:
+        0 0 8px #ffffff,
+        0 0 16px #c4a5ff,
+        0 0 30px #8b5cf6;
+
+    transform: translate(-50%, -50%);
+    animation: sparkleFade 1.2s ease-out forwards;
+}
+
+.cursor-trail-star {
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    color: #d8c5ff;
+    font-size: var(--star-size, 13px);
+    text-shadow:
+        0 0 6px #ffffff,
+        0 0 14px #a78bfa,
+        0 0 25px #8b5cf6;
+    animation: starFloat 1.1s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.05);
+    }
+}
+
+@keyframes starFloat {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(
+            calc(-50% + var(--move-x)),
+            calc(-50% + var(--move-y))
+        ) scale(1.3) rotate(180deg);
+    }
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+    .cursor-trail-dot,
+    .cursor-trail-star {
+        display: none !important;
+    }
+}
