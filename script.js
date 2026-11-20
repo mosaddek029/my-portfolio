@@ -6,17 +6,19 @@
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", function () {
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", function () {
 
-    navLinks.classList.toggle("active");
+        navLinks.classList.toggle("active");
 
-    const isOpen = navLinks.classList.contains("active");
+        const isOpen = navLinks.classList.contains("active");
 
-    menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
 
-    menuToggle.textContent = isOpen ? "✕" : "☰";
+        menuToggle.textContent = isOpen ? "✕" : "☰";
 
-});
+    });
+}
 // Typing Animation
 
 
@@ -78,15 +80,13 @@ if (typingElement) {
 }
 
 
-let messageIndex = 0;
-let characterIndex = 0;
-
-
 // Close menu after clicking a navigation link
 
 document.querySelectorAll(".nav-links a").forEach(function(link) {
 
     link.addEventListener("click", function() {
+
+        if (!navLinks || !menuToggle) return;
 
         navLinks.classList.remove("active");
 
@@ -105,31 +105,48 @@ document.querySelectorAll(".nav-links a").forEach(function(link) {
 
 const themeButton = document.getElementById("themeButton");
 
+function applyMode(isLight) {
 
-themeButton.addEventListener("click", function () {
+    document.body.classList.toggle("light-mode", isLight);
 
-    document.body.classList.toggle("light-mode");
+    if (themeButton) {
+        themeButton.textContent = isLight ? "🌙" : "☀️";
+        themeButton.setAttribute(
+            "aria-label",
+            isLight ? "Switch to dark mode" : "Switch to light mode"
+        );
+    }
 
-    const isLight =
-        document.body.classList.contains("light-mode");
+}
 
-    themeButton.textContent = isLight
-        ? "🌙"
-        : "☀️";
+let savedMode = null;
+try { savedMode = localStorage.getItem("portfolioMode"); } catch (e) {}
 
-    themeButton.setAttribute(
-        "aria-label",
-        isLight ? "Switch to dark mode" : "Switch to light mode"
-    );
+applyMode(savedMode === "light");
 
-});
+if (themeButton) {
+    themeButton.addEventListener("click", function () {
+
+        const isLight = !document.body.classList.contains("light-mode");
+
+        applyMode(isLight);
+
+        try {
+            localStorage.setItem("portfolioMode", isLight ? "light" : "dark");
+        } catch (e) {}
+
+    });
+}
 
 // =================================
 // 4. Dynamic Copyright Year
 // =================================
 
-document.getElementById("currentYear").textContent =
-    new Date().getFullYear();
+const yearElement = document.getElementById("currentYear");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
 
 
 // =================================
@@ -140,37 +157,109 @@ const contactForm = document.getElementById("contactForm");
 
 const formStatus = document.getElementById("formStatus");
 
-contactForm.addEventListener("submit", function(event) {
+const CONTACT_EMAIL = "mdmosaddek20032@gmail.com";
 
-    event.preventDefault();
+// To send messages straight to your inbox (no email app needed):
+// 1. Create a free form at https://formspree.io
+// 2. Paste its address below, e.g. "https://formspree.io/f/abcdwxyz"
+// Leave it empty to use the email-app fallback.
+const FORM_ENDPOINT = "";
 
-    const name = document.getElementById("name").value.trim();
+if (contactForm && formStatus) {
 
-    const email = document.getElementById("email").value.trim();
+    contactForm.addEventListener("submit", async function(event) {
 
-    const subject = document.getElementById("subject").value.trim();
+        event.preventDefault();
 
-    const message = document.getElementById("message").value.trim();
+        const name = document.getElementById("name").value.trim();
 
-    if (!name || !email || !subject || !message) {
+        const email = document.getElementById("email").value.trim();
 
-        formStatus.textContent = "Please fill in all fields.";
+        const subject = document.getElementById("subject").value.trim();
 
-        return;
+        const message = document.getElementById("message").value.trim();
 
-    }
+        if (!name || !email || !subject || !message) {
 
-    formStatus.textContent =
-        "Your form passed validation! Message delivery is not configured yet.";
+            formStatus.textContent = "Please fill in all fields.";
 
-    contactForm.reset();
+            return;
 
-});
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+            formStatus.textContent = "Please enter a valid email address.";
+
+            return;
+
+        }
+
+        const submitButton =
+            contactForm.querySelector('button[type="submit"]');
+
+        if (FORM_ENDPOINT) {
+
+            // Send directly through the form service
+            try {
+
+                if (submitButton) submitButton.disabled = true;
+                formStatus.textContent = "Sending...";
+
+                const response = await fetch(FORM_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({ name, email, subject, message })
+                });
+
+                if (!response.ok) throw new Error("Send failed");
+
+                formStatus.textContent =
+                    "Thank you! Your message has been sent.";
+
+                contactForm.reset();
+
+            } catch (error) {
+
+                formStatus.textContent =
+                    "Sorry, the message could not be sent. " +
+                    `Please email me directly at ${CONTACT_EMAIL}.`;
+
+            } finally {
+
+                if (submitButton) submitButton.disabled = false;
+
+            }
+
+            return;
+        }
+
+        // Fallback: open the visitor's email app with the message filled in
+        const body =
+            `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+        window.location.href =
+            `mailto:${CONTACT_EMAIL}` +
+            `?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(body)}`;
+
+        formStatus.textContent =
+            "Opening your email app. Press Send there to deliver your message.";
+
+        contactForm.reset();
+
+    });
+
+}
+
 // Developer Journey Scroll Animation
 
 const journeyItems = document.querySelectorAll(".timeline-item");
 
-const journeyObserver = new IntersectionObserver(
+const journeyObserver = !("IntersectionObserver" in window) ? null : new IntersectionObserver(
     (entries) => {
 
         entries.forEach((entry) => {
@@ -192,6 +281,11 @@ const journeyObserver = new IntersectionObserver(
 );
 
 journeyItems.forEach((item) => {
+
+    if (!journeyObserver) {
+        item.classList.add("show");
+        return;
+    }
 
     item.classList.add("hidden");
 
@@ -274,7 +368,8 @@ fetch("data.json")
 
             academicContainer.innerHTML = "";
 
-            data.academicAchievements.forEach(achievement => {
+            (Array.isArray(data.academicAchievements)
+                ? data.academicAchievements : []).forEach(achievement => {
 
                 const card = document.createElement("div");
                 card.className = "academic-gpa-card";
@@ -404,6 +499,16 @@ fetch("data.json")
 
     .catch(error => {
         console.error("JSON Error:", error);
+
+        // Show a visible message instead of leaving empty sections
+        ["certificatesContainer", "latestUpdatesContainer"].forEach(id => {
+            const box = document.getElementById(id);
+            if (box && !box.children.length) {
+                box.textContent =
+                    "Content could not be loaded. Make sure data.json exists " +
+                    "and the site is opened through a web server (not file://).";
+            }
+        });
     });
 // =================================
 // Active Sidebar Navigation
@@ -418,11 +523,18 @@ function updateActiveNavigation() {
 
     let currentSection = "home";
 
+    // Sections without their own menu link (Journey, Certificates, Research,
+    // Latest Updates) highlight the closest earlier section that has one.
+    const linkedIds = Array.from(sidebarLinks).map(function (link) {
+        return link.getAttribute("href").slice(1);
+    });
+
     pageSections.forEach(section => {
 
         const sectionTop = section.offsetTop;
 
-        if (window.scrollY >= sectionTop - 200) {
+        if (window.scrollY >= sectionTop - 200 &&
+            linkedIds.includes(section.getAttribute("id"))) {
             currentSection = section.getAttribute("id");
         }
 
@@ -443,3 +555,209 @@ function updateActiveNavigation() {
 window.addEventListener("scroll", updateActiveNavigation);
 
 updateActiveNavigation();
+
+/* =====================================
+   DYNAMIC THEME COLOR CONTROLLER
+===================================== */
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const toggle = document.getElementById("themeColorToggle");
+    const dropdown = document.getElementById("themeColorDropdown");
+    const colorButtons = document.querySelectorAll(".color-options button");
+    const resetButton = document.getElementById("resetThemeColor");
+
+    if (!toggle || !dropdown) return;
+
+    const defaultColor = "#60A5FA";
+
+    function closeColorDropdown() {
+        dropdown.classList.remove("active");
+        toggle.setAttribute("aria-expanded", "false");
+    }
+
+    function applyThemeColor(color) {
+
+        // Apply selected color to both dark and light modes
+        document.body.style.setProperty("--visitor-accent", color);
+        document.body.style.setProperty("--accent-color", color);
+
+        // Highlight selected color
+        colorButtons.forEach(button => {
+            const selected =
+                button.dataset.color.toLowerCase() === color.toLowerCase();
+
+            button.classList.toggle("selected", selected);
+        });
+
+        // Remember visitor preference
+        try {
+            localStorage.setItem("portfolioThemeColor", color);
+        } catch (e) {}
+    }
+
+    // Load previously selected color
+    let savedColor = defaultColor;
+    try {
+        savedColor =
+            localStorage.getItem("portfolioThemeColor") || defaultColor;
+    } catch (e) {}
+
+    applyThemeColor(savedColor);
+
+    // Open and close dropdown
+    toggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        const isOpen = dropdown.classList.toggle("active");
+        toggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Select a color and automatically close dropdown
+    colorButtons.forEach(button => {
+
+        button.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            const selectedColor = this.dataset.color;
+
+            applyThemeColor(selectedColor);
+            closeColorDropdown();
+        });
+
+    });
+
+    // Reset color and automatically close dropdown
+    if (resetButton) {
+        resetButton.addEventListener("click", function (event) {
+            event.stopPropagation();
+
+            applyThemeColor(defaultColor);
+            closeColorDropdown();
+        });
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+
+        if (!event.target.closest(".theme-color-picker")) {
+            closeColorDropdown();
+        }
+
+    });
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const galleryImage = document.getElementById("galleryImage");
+    const previousButton = document.getElementById("galleryPrev");
+    const nextButton = document.getElementById("galleryNext");
+    const dotsContainer = document.getElementById("galleryDots");
+    const counter = document.getElementById("galleryCounter");
+
+    if (!galleryImage || !previousButton || !nextButton || !dotsContainer) return;
+
+    // position = which part of the photo stays visible when it is cropped
+    // "50% 0%" = keep the top (heads), "50% 50%" = centre, "50% 100%" = keep the bottom
+    const photos = [
+        { src: "photo1.jpg",  caption: "Memory 1", position: "50% 0%"  },
+        { src: "photo2.jpeg", caption: "Memory 2", position: "50% 30%" },
+        { src: "photo3.jpeg", caption: "Memory 3", position: "50% 30%" },
+        { src: "photo4.jpeg", caption: "Memory 4", position: "50% 30%" },
+        { src: "photo5.jpeg", caption: "Memory 5", position: "50% 30%" }
+    ];
+
+    let currentIndex = 0;
+    let slideshowTimer;
+
+    // If a photo fails to load, try the other extension (.jpg <-> .jpeg) once.
+    // The flag is reset every time a new photo is shown, so a missing file
+    // can never cause an endless retry loop.
+    let retriedCurrent = false;
+
+    galleryImage.addEventListener("error", function () {
+
+        if (retriedCurrent) return;
+        retriedCurrent = true;
+
+        const current = galleryImage.getAttribute("src") || "";
+
+        if (/\.jpe?g$/i.test(current)) {
+            galleryImage.src = current.replace(/\.(jpe?g)$/i, function (match, ext) {
+                return ext.toLowerCase() === "jpg" ? ".jpeg" : ".jpg";
+            });
+        }
+
+    });
+
+    function showPhoto(index) {
+        currentIndex = (index + photos.length) % photos.length;
+
+        galleryImage.classList.add("changing");
+
+        setTimeout(function () {
+            galleryImage.style.setProperty("--photo-position", photos[currentIndex].position);
+            retriedCurrent = false;
+            galleryImage.src = photos[currentIndex].src;
+            galleryImage.alt = photos[currentIndex].caption;
+
+            if (counter) {
+                counter.textContent = `${currentIndex + 1} / ${photos.length}`;
+            }
+
+            document.querySelectorAll(".gallery-dot").forEach(function (dot, i) {
+                dot.classList.toggle("active", i === currentIndex);
+            });
+
+            galleryImage.classList.remove("changing");
+        }, 200);
+    }
+
+    photos.forEach(function (photo, index) {
+        const dot = document.createElement("button");
+
+        dot.className = "gallery-dot";
+        dot.setAttribute("aria-label", `Show photo ${index + 1}`);
+
+        dot.addEventListener("click", function () {
+            showPhoto(index);
+            startSlideshow();
+        });
+
+        dotsContainer.appendChild(dot);
+    });
+
+    function startSlideshow() {
+        clearInterval(slideshowTimer);
+        slideshowTimer = setInterval(function () {
+            showPhoto(currentIndex + 1);
+        }, 4000);
+    }
+
+    nextButton.addEventListener("click", function () {
+        showPhoto(currentIndex + 1);
+        startSlideshow();
+    });
+
+    previousButton.addEventListener("click", function () {
+        showPhoto(currentIndex - 1);
+        startSlideshow();
+    });
+
+    const slider = galleryImage.closest(".gallery-slider");
+
+    if (slider) {
+        slider.addEventListener("mouseenter", function () {
+            clearInterval(slideshowTimer);
+        });
+        slider.addEventListener("mouseleave", startSlideshow);
+    }
+
+    showPhoto(0);
+    startSlideshow();
+
+});
+

@@ -20,7 +20,7 @@ const clearChatButton = document.getElementById("clearChat");
 const portfolioAnswers = [
 
     {
-        keywords: ["who are you", "who is mosaddek", "about mosaddek", "introduce"],
+        keywords: ["who are you", "who is mosaddek", "introduce", "yourself"],
         answer: "I'm Mosaddek Hosen, a Software Engineering student at Daffodil International University. I'm interested in software development, problem-solving, and building practical applications."
     },
 
@@ -30,7 +30,7 @@ const portfolioAnswers = [
     },
 
     {
-        keywords: ["skill", "technical skill", "programming language", "technology"],
+        keywords: ["skill", "technical skill", "programming language", "technology", "technologies"],
         answer: "His technical learning areas include C programming, Java, Object-Oriented Programming, HTML, CSS, JavaScript, MySQL, Data Structures, and Algorithms."
     },
 
@@ -56,7 +56,7 @@ const portfolioAnswers = [
 
     {
         keywords: ["research", "publication", "medical diagnostics", "paper"],
-        answer: "Mosaddek has worked on a review paper titled 'AI in Medical Diagnostics', studying research papers about the use of artificial intelligence in medical diagnosis."
+        answer: "Mosaddek has worked on a review paper titled 'AI in Medical Diagnostics', studying 23 research papers about the use of artificial intelligence in medical diagnosis. The paper is currently under journal submission."
     },
 
     {
@@ -94,7 +94,12 @@ function getBotAnswer(question) {
         .replace(/\s+/g, " ")
         .trim();
 
-    const questionWords = normalizedQuestion.split(" ");
+    // Treat simple plurals as the same word ("skills" = "skill", "goals" = "goal")
+    function stem(word) {
+        return word.length > 3 && word.endsWith("s") ? word.slice(0, -1) : word;
+    }
+
+    const questionWords = normalizedQuestion.split(" ").map(stem);
 
     let bestAnswer = null;
     let highestScore = 0;
@@ -115,7 +120,7 @@ function getBotAnswer(question) {
 
             } else {
 
-                if (questionWords.includes(normalizedKeyword)) {
+                if (questionWords.includes(stem(normalizedKeyword))) {
                     score += 1;
                 }
 
@@ -131,7 +136,7 @@ function getBotAnswer(question) {
     });
 
     return bestAnswer || 
-        "I don't have that information yet. Please explore the portfolio or contact Mosaddek directly.";
+        "I don't have that information yet. Try asking about his skills, projects, education, research or career goals, or contact Mosaddek directly.";
 
 }
 
@@ -255,14 +260,21 @@ if (clearChatButton && chatMessages) {
 
     clearChatButton.addEventListener("click", () => {
 
-        // Remove all previous messages
-        chatMessages.innerHTML = "";
+        const suggestions = chatMessages.querySelector(".suggested-questions");
 
-        // Restore the welcome message
-        addMessage(
-            "Hello! I'm Mosaddek's portfolio assistant. What would you like to know about him?",
-            "bot"
-        );
+        // Remove all previous messages but keep the suggested questions
+        Array.from(chatMessages.children).forEach((child) => {
+            if (child !== suggestions) child.remove();
+        });
+
+        // Restore the welcome message above the suggestions
+        const welcome = document.createElement("div");
+        welcome.classList.add("bot-message");
+        welcome.textContent =
+            "Hello! I'm Mosaddek's portfolio assistant. What would you like to know about him?";
+
+        chatMessages.insertBefore(welcome, suggestions);
+        chatMessages.scrollTop = 0;
 
     });
 

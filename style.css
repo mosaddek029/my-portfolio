@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 * {
@@ -1155,8 +1157,6 @@ section h2 {
    NEW CINEMATIC PORTFOLIO THEME
 ========================================= */
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 /* Global theme */
 
@@ -1263,13 +1263,6 @@ html {
     transform: translateX(5px);
 }
 
-/* Active link */
-
-.nav-links a[href="#home"] {
-    color: #ffffff;
-    border-bottom: 1px solid #888;
-    width: fit-content;
-}
 
 /* Theme button */
 
@@ -3043,10 +3036,6 @@ body.light-mode .theme-button {
         outline: none;
     }
 
-    .nav-links a[href="#home"] {
-        color: #00d9ff;
-        background: rgba(0, 217, 255, .10);
-    }
 
     .theme-button {
         position: absolute;
@@ -3188,10 +3177,6 @@ body.light-mode .nav-links a:focus-visible {
     background: #e2f4fa;
 }
 
-body.light-mode .nav-links a[href="#home"] {
-    color: #007f9e;
-    background: #e2f4fa;
-}
 
 body.light-mode .theme-button {
     background: #ffffff;
@@ -7462,4 +7447,1222 @@ body.light-mode .hero::before {
     .cursor-trail-star {
         display: none !important;
     }
+}
+
+/* =========================================
+   TV BROADCAST STYLE PORTFOLIO
+========================================= */
+
+.broadcast-header {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: #a879ff;
+    min-height: 48px;
+    transform: rotate(-1.2deg);
+    transform-origin: left center;
+    margin: 12px 0 35px;
+    position: relative;
+    z-index: 5;
+}
+
+.broadcast-label {
+    flex-shrink: 0;
+    background: #21152f;
+    color: white;
+    padding: 15px 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    z-index: 2;
+}
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+    background: #ff4d8d;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4d8d;
+    animation: livePulse 1s infinite;
+}
+
+.broadcast-track {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.broadcast-content {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    animation: broadcastMove 30s linear infinite;
+}
+
+.broadcast-content span {
+    color: white;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 15px;
+    padding: 0 28px;
+}
+
+@keyframes broadcastMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes livePulse {
+    50% {
+        opacity: 0.35;
+        box-shadow: 0 0 2px #ff4d8d;
+    }
+}
+
+/* Moving section dividers */
+
+.section-broadcast {
+    width: 100%;
+    overflow: hidden;
+    background: rgba(168, 121, 255, 0.13);
+    border-top: 1px solid rgba(168, 121, 255, 0.4);
+    border-bottom: 1px solid rgba(168, 121, 255, 0.4);
+    padding: 13px 0;
+    margin: 25px 0;
+    white-space: nowrap;
+}
+
+.section-broadcast-track {
+    display: flex;
+    width: max-content;
+    animation: sectionMove 24s linear infinite;
+}
+
+.section-broadcast-track span {
+    color: #c5a4ff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    padding-right: 35px;
+}
+
+@keyframes sectionMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+
+/* Pause when a visitor hovers over a ticker */
+
+.broadcast-header:hover .broadcast-content,
+.section-broadcast:hover .section-broadcast-track,
+.bottom-news-bar:hover .bottom-news-content {
+    animation-play-state: paused;
+}
+
+body {
+    padding-bottom: 0 !important;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 600px) {
+    .broadcast-header {
+        min-height: 42px;
+        margin-top: 8px;
+    }
+
+    .broadcast-label,
+    .bottom-news-label {
+        padding: 13px 10px;
+        font-size: 10px;
+    }
+
+    .broadcast-content span,
+    .bottom-news-content span {
+        font-size: 11px;
+        padding: 0 15px;
+    }
+
+    .section-broadcast-track span {
+        font-size: 11px;
+    }
+}
+
+/* Respect visitors who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    .broadcast-content,
+    .section-broadcast-track,
+    .bottom-news-content {
+        animation: none !important;
+    }
+}
+
+/* ==========================================
+   FULL-WIDTH PORTFOLIO LAYOUT FIX
+   Preserve sidebar and broadcast animations
+========================================== */
+
+
+/* ==========================================
+   FINAL PORTFOLIO LAYOUT - STRUCTURAL FIX
+========================================== */
+
+/* Global sizing */
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Desktop sidebar */
+.sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 240px !important;
+    height: 100vh !important;
+    z-index: 2000;
+}
+
+/* Main content occupies ALL remaining width */
+main {
+    display: block;
+    width: calc(100% - 240px) !important;
+    max-width: none !important;
+    margin-left: 240px !important;
+    min-width: 0;
+    overflow: visible;
+}
+
+/* Every main section uses available width */
+main > section {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
+    padding-left: clamp(24px, 5%, 85px);
+    padding-right: clamp(24px, 5%, 85px);
+}
+
+/* Remove unnecessary container width limits */
+.about-container,
+.education-container,
+.skills-container,
+.journey-container,
+.projects-container,
+.projects-grid,
+.achievement-container,
+.certificates-container,
+.research-container,
+.updates-container,
+.contact-container {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* About layout */
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+}
+
+/* Skills layout */
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.skill-category {
+    min-width: 0;
+    width: 100%;
+}
+
+.skill-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* Projects layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+/* Other card layouts */
+.achievement-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.education-container {
+    display: grid;
+    gap: 22px;
+}
+
+/* Broadcast header belongs inside main */
+.broadcast-header {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+    box-sizing: border-box;
+}
+
+/* Section ticker */
+.section-broadcast {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+/* Bottom ticker stays across the complete screen */
+.bottom-news-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99990;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .sidebar {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    main {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .broadcast-header {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+
+    main > section {
+        padding: 65px 5% !important;
+    }
+
+    .about-container,
+    .skills-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .achievement-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .skill-list,
+    .achievement-container {
+        grid-template-columns: 1fr;
+    }
+
+    main > section {
+        padding: 55px 18px !important;
+    }
+}
+/* Completely remove bottom LIVE NEWS ticker */
+
+.bottom-news-bar {
+    display: none !important;
+}
+/* =================================
+   PROFESSIONAL PROFILE SNAPSHOT
+================================= */
+
+.profile-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 28px 0;
+    max-width: 720px;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 12px;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateY(-4px);
+    border-color: #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+}
+
+.highlight-number {
+    color: #38bdf8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.highlight-item strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.highlight-item p {
+    color: #aab7c8;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Light mode */
+
+body.light-mode .highlight-item {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: #d5e0eb;
+}
+
+body.light-mode .highlight-item strong {
+    color: #172f50;
+}
+
+body.light-mode .highlight-item p {
+    color: #52647b;
+}
+
+/* Responsive */
+
+@media (max-width: 650px) {
+    .profile-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .highlight-item {
+        padding: 13px 15px;
+    }
+}
+
+/* =====================================
+   DYNAMIC DARK THEME COLOR PICKER
+===================================== */
+
+.theme-color-picker {
+    position: fixed;
+    top: 25px;
+    right: 175px;
+    z-index: 10000;
+}
+
+#themeColorToggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 17px;
+    border-radius: 50px;
+    background: #101820;
+    color: #60A5FA;
+    border: 1px solid #60A5FA;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 18px rgba(96,165,250,.15);
+    transition: .3s ease;
+}
+
+#themeColorToggle:hover {
+    transform: translateY(-3px);
+}
+
+.theme-color-dropdown {
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 245px;
+    padding: 20px;
+    background: #172536;
+    border: 1px solid #40536B;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.45);
+}
+
+.theme-color-dropdown.active {
+    display: block;
+    animation: colorDropdownIn .2s ease;
+}
+
+@keyframes colorDropdownIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-color-dropdown h4 {
+    color: #F1F5FB;
+    margin-bottom: 6px;
+}
+
+.theme-color-dropdown p {
+    color: #9AABC0;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.color-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.color-options button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--swatch);
+    border: 3px solid #34445A;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.color-options button:hover,
+.color-options button.selected {
+    transform: scale(1.15);
+    border-color: white;
+    box-shadow: 0 0 12px var(--swatch);
+}
+
+#resetThemeColor {
+    width: 100%;
+    padding: 10px;
+    background: #26374B;
+    color: #DCE8F5;
+    border: 1px solid #40536B;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Apply selected color to dark theme cards */
+
+
+/* ==========================================
+   GLOBAL ADAPTIVE BOX COLOR SYSTEM
+   Dark theme only
+========================================== */
+
+body:not(.light-mode) {
+    --visitor-accent: #60A5FA;
+    --visitor-card: color-mix(
+        in srgb,
+        var(--visitor-accent) 10%,
+        #172437
+    );
+    --visitor-border: color-mix(
+        in srgb,
+        var(--visitor-accent) 45%,
+        #34445A
+    );
+    --visitor-soft: color-mix(
+        in srgb,
+        var(--visitor-accent) 17%,
+        #172437
+    );
+}
+
+/* ALL MAIN CONTENT BOXES */
+body:not(.light-mode) .about-content,
+body:not(.light-mode) .detail-card,
+body:not(.light-mode) .education-card,
+body:not(.light-mode) .skill-category,
+body:not(.light-mode) .skill-card,
+body:not(.light-mode) .timeline-card,
+body:not(.light-mode) .project-card,
+body:not(.light-mode) .achievement-card,
+body:not(.light-mode) .academic-gpa-card,
+body:not(.light-mode) .certificate-card,
+body:not(.light-mode) .research-card,
+body:not(.light-mode) .update-card,
+body:not(.light-mode) .contact-info,
+body:not(.light-mode) .contact-form,
+body:not(.light-mode) .contact-item,
+body:not(.light-mode) .research-details > div {
+    background: var(--visitor-card) !important;
+    border-color: var(--visitor-border) !important;
+    transition: background .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease !important;
+}
+
+/* LEFT ACCENT LINE */
+body:not(.light-mode) .about-content,
+body:not(.light-mode) .detail-card,
+body:not(.light-mode) .education-card,
+body:not(.light-mode) .skill-category,
+body:not(.light-mode) .skill-card,
+body:not(.light-mode) .timeline-card,
+body:not(.light-mode) .project-card,
+body:not(.light-mode) .achievement-card,
+body:not(.light-mode) .academic-gpa-card,
+body:not(.light-mode) .certificate-card,
+body:not(.light-mode) .research-card,
+body:not(.light-mode) .update-card,
+body:not(.light-mode) .contact-info,
+body:not(.light-mode) .contact-form,
+body:not(.light-mode) .contact-item {
+    border-left: 5px solid var(--visitor-accent) !important;
+}
+
+/* HEADINGS, LINKS AND HIGHLIGHTS */
+body:not(.light-mode) .section-heading h2 span,
+body:not(.light-mode) .section-heading > p:first-child,
+body:not(.light-mode) .education-date,
+body:not(.light-mode) .timeline-date,
+body:not(.light-mode) .project-number,
+body:not(.light-mode) .project-link,
+body:not(.light-mode) .update-category,
+body:not(.light-mode) .research-tags span,
+body:not(.light-mode) .contact-item strong {
+    color: var(--visitor-accent) !important;
+}
+
+/* ICONS AND SMALL TAG BOXES */
+body:not(.light-mode) .skill-icon,
+body:not(.light-mode) .education-icon,
+body:not(.light-mode) .project-tech span,
+body:not(.light-mode) .achievement-tag,
+body:not(.light-mode) .timeline-tags span,
+body:not(.light-mode) .research-tags span {
+    background: var(--visitor-soft) !important;
+    border-color: var(--visitor-border) !important;
+    color: var(--visitor-accent) !important;
+}
+
+/* HOVER EFFECT */
+body:not(.light-mode) .about-content:hover,
+body:not(.light-mode) .detail-card:hover,
+body:not(.light-mode) .education-card:hover,
+body:not(.light-mode) .skill-category:hover,
+body:not(.light-mode) .skill-card:hover,
+body:not(.light-mode) .timeline-card:hover,
+body:not(.light-mode) .project-card:hover,
+body:not(.light-mode) .achievement-card:hover,
+body:not(.light-mode) .certificate-card:hover,
+body:not(.light-mode) .research-card:hover,
+body:not(.light-mode) .update-card:hover,
+body:not(.light-mode) .contact-item:hover {
+    border-color: var(--visitor-accent) !important;
+    box-shadow: 0 10px 30px color-mix(
+        in srgb,
+        var(--visitor-accent) 18%,
+        transparent
+    ) !important;
+}
+@media (max-width: 600px) {
+    .theme-color-picker {
+        top: 15px;
+        right: 155px;
+    }
+
+    #themeColorToggle {
+        padding: 11px 12px;
+        font-size: 12px;
+        gap: 6px;
+    }
+
+    .theme-color-dropdown {
+        width: 220px;
+    }
+}
+/* =========================================
+   THEME COLOR PICKER — SIDEBAR NAVIGATION
+   ========================================= */
+
+body:not(.light-mode) .sidebar .nav-links a {
+    background: color-mix(
+        in srgb,
+        var(--visitor-accent) 12%,
+        #172437
+    ) !important;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--visitor-accent) 38%,
+        #34445A
+    ) !important;
+
+    border-left: 5px solid var(--visitor-accent) !important;
+
+    transition: all 0.3s ease !important;
+}
+
+/* Hover effect */
+body:not(.light-mode) .sidebar .nav-links a:hover {
+    background: color-mix(
+        in srgb,
+        var(--visitor-accent) 28%,
+        #172437
+    ) !important;
+
+    border-color: var(--visitor-accent) !important;
+    color: var(--visitor-accent) !important;
+
+    transform: translateX(5px);
+}
+
+/* Active navigation item */
+body:not(.light-mode) .sidebar .nav-links a.active {
+    background: color-mix(
+        in srgb,
+        var(--visitor-accent) 25%,
+        #172437
+    ) !important;
+
+    border-color: var(--visitor-accent) !important;
+    border-left: 5px solid var(--visitor-accent) !important;
+    color: var(--visitor-accent) !important;
+}
+
+/* Theme toggle button in sidebar */
+body:not(.light-mode) .sidebar .theme-button {
+    border-color: var(--visitor-accent) !important;
+    color: var(--visitor-accent) !important;
+
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   COMPLETE VISITOR THEME COLOR SYSTEM
+========================================== */
+
+/* Make the selected accent available in both modes */
+body {
+    --accent-color: var(--visitor-accent, #60A5FA);
+}
+
+/* DARK MODE — all main content cards */
+body:not(.light-mode) .about-content,
+body:not(.light-mode) .detail-card,
+body:not(.light-mode) .education-card,
+body:not(.light-mode) .skill-category,
+body:not(.light-mode) .skill-card,
+body:not(.light-mode) .timeline-card,
+body:not(.light-mode) .project-card,
+body:not(.light-mode) .achievement-card,
+body:not(.light-mode) .academic-gpa-card,
+body:not(.light-mode) .certificate-card,
+body:not(.light-mode) .research-card,
+body:not(.light-mode) .update-card,
+body:not(.light-mode) .contact-info,
+body:not(.light-mode) .contact-form,
+body:not(.light-mode) .contact-item,
+body:not(.light-mode) .research-details > div {
+    background: color-mix(in srgb, var(--visitor-accent, #60A5FA) 12%, #172437) !important;
+    border-color: color-mix(in srgb, var(--visitor-accent, #60A5FA) 45%, #34445A) !important;
+    transition: background .3s ease, border-color .3s ease !important;
+}
+
+/* LIGHT MODE — same cards, with light backgrounds */
+body.light-mode .about-content,
+body.light-mode .detail-card,
+body.light-mode .education-card,
+body.light-mode .skill-category,
+body.light-mode .skill-card,
+body.light-mode .timeline-card,
+body.light-mode .project-card,
+body.light-mode .achievement-card,
+body.light-mode .academic-gpa-card,
+body.light-mode .certificate-card,
+body.light-mode .research-card,
+body.light-mode .update-card,
+body.light-mode .contact-info,
+body.light-mode .contact-form,
+body.light-mode .contact-item,
+body.light-mode .research-details > div {
+    background: color-mix(in srgb, var(--visitor-accent, #60A5FA) 7%, #ffffff) !important;
+    border-color: color-mix(in srgb, var(--visitor-accent, #60A5FA) 40%, #dce4ed) !important;
+    transition: background .3s ease, border-color .3s ease !important;
+}
+
+/* Left accent line */
+body:not(.light-mode) .about-content,
+body:not(.light-mode) .detail-card,
+body:not(.light-mode) .education-card,
+body:not(.light-mode) .skill-category,
+body:not(.light-mode) .skill-card,
+body:not(.light-mode) .timeline-card,
+body:not(.light-mode) .project-card,
+body:not(.light-mode) .achievement-card,
+body:not(.light-mode) .academic-gpa-card,
+body:not(.light-mode) .certificate-card,
+body:not(.light-mode) .research-card,
+body:not(.light-mode) .update-card,
+body:not(.light-mode) .contact-info,
+body:not(.light-mode) .contact-form,
+body:not(.light-mode) .contact-item {
+    border-left: 5px solid var(--visitor-accent, #60A5FA) !important;
+}
+
+body.light-mode .about-content,
+body.light-mode .detail-card,
+body.light-mode .education-card,
+body.light-mode .skill-category,
+body.light-mode .skill-card,
+body.light-mode .timeline-card,
+body.light-mode .project-card,
+body.light-mode .achievement-card,
+body.light-mode .academic-gpa-card,
+body.light-mode .certificate-card,
+body.light-mode .research-card,
+body.light-mode .update-card,
+body.light-mode .contact-info,
+body.light-mode .contact-form,
+body.light-mode .contact-item {
+    border-left: 5px solid var(--visitor-accent, #60A5FA) !important;
+}
+
+/* Sidebar navigation in both modes */
+.sidebar .nav-links a {
+    border-left: 5px solid var(--visitor-accent, #60A5FA) !important;
+    transition: all .3s ease !important;
+}
+
+body:not(.light-mode) .sidebar .nav-links a {
+    background: color-mix(in srgb, var(--visitor-accent, #60A5FA) 12%, #172437) !important;
+    border-color: color-mix(in srgb, var(--visitor-accent, #60A5FA) 40%, #34445A) !important;
+}
+
+body.light-mode .sidebar .nav-links a {
+    background: color-mix(in srgb, var(--visitor-accent, #60A5FA) 7%, #ffffff) !important;
+    border-color: color-mix(in srgb, var(--visitor-accent, #60A5FA) 35%, #dce4ed) !important;
+}
+
+/* Selected color for headings, links and icons */
+body .section-heading h2 span,
+body .section-heading > p:first-child,
+body .section-tag,
+body .project-number,
+body .project-link,
+body .education-date,
+body .contact-item strong {
+    color: var(--visitor-accent, #60A5FA) !important;
+}
+
+/* FINAL FIX — ABOUT ME CARD */
+body #about .about-content,
+body.light-mode #about .about-content {
+    background: color-mix(
+        in srgb,
+        var(--visitor-accent, #60A5FA) 12%,
+        #172437
+    ) !important;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--visitor-accent, #60A5FA) 45%,
+        #34445A
+    ) !important;
+
+    border-left: 5px solid var(--visitor-accent, #60A5FA) !important;
+
+    transition: all 0.3s ease !important;
+}
+
+/* Light mode version */
+body.light-mode #about .about-content {
+    background: color-mix(
+        in srgb,
+        var(--visitor-accent, #60A5FA) 7%,
+        #ffffff
+    ) !important;
+
+    border: 1px solid color-mix(
+        in srgb,
+        var(--visitor-accent, #60A5FA) 40%,
+        #dce4ed
+    ) !important;
+
+    border-left: 5px solid var(--visitor-accent, #60A5FA) !important;
+}
+
+/* Heading accent */
+#about .about-content h3 {
+    color: var(--visitor-accent, #60A5FA) !important;
+}
+
+/* =====================================
+   MY MOMENTS - PHOTO SLIDESHOW
+===================================== */
+
+.gallery-section {
+    padding: 90px 7%;
+}
+
+.gallery-container {
+    max-width: 900px;
+    margin: 45px auto 0;
+    text-align: center;
+}
+
+.gallery-slider {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 2px solid var(--visitor-accent, #60A5FA);
+    background: #172437;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.5s ease;
+}
+
+.gallery-image.changing {
+    opacity: 0.2;
+}
+
+/* Previous and Next buttons */
+
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--visitor-accent, #60A5FA);
+    border-radius: 50%;
+    background: rgba(10, 20, 35, 0.8);
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.gallery-arrow:hover {
+    background: var(--visitor-accent, #60A5FA);
+    color: #101722;
+}
+
+.gallery-arrow.previous {
+    left: 18px;
+}
+
+.gallery-arrow.next {
+    right: 18px;
+}
+
+/* Photo counter */
+
+.gallery-counter {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    background: rgba(10, 20, 35, 0.8);
+    font-size: 13px;
+}
+
+/* Navigation dots */
+
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 22px 0 12px;
+}
+
+.gallery-dot {
+    width: 11px;
+    height: 11px;
+    border: none;
+    border-radius: 50%;
+    background: #64748b;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.gallery-dot.active {
+    background: var(--visitor-accent, #60A5FA);
+    transform: scale(1.3);
+}
+
+.gallery-caption {
+    color: var(--text-color, #cbd5e1);
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+/* Light mode */
+
+body.light-mode .gallery-slider {
+    background: #ffffff;
+    box-shadow: 0 15px 35px rgba(30, 50, 80, 0.10);
+}
+
+body.light-mode .gallery-caption {
+    color: #536477;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+    .gallery-slider {
+        height: 350px;
+    }
+
+    .gallery-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 450px) {
+    .gallery-slider {
+        height: 260px;
+    }
+}
+
+/* MY MOMENTS — IMAGE DISPLAY FIX */
+
+#gallery .gallery-slider {
+    overflow: hidden !important;
+}
+
+#gallery .gallery-slider img#galleryImage {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: var(--photo-position, 50% 30%) !important;
+    background: transparent !important;
+}
+
+
+
+/* ===== Chat toolbar (previously unstyled) ===== */
+.chat-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+.chat-status { color: #34d399; }
+#clearChat {
+    background: none;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    border-radius: 14px;
+    color: inherit;
+    padding: 3px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+#clearChat:hover { border-color: var(--visitor-accent, #60A5FA); }
+.chat-label { margin-left: 6px; }
+
+
+/* =========================================
+   SECTION TICKERS: seamless loop, per-section text
+========================================= */
+.section-broadcast-track {
+    will-change: transform;
+}
+
+
+/* =========================================
+   COMPACT FLOATING BUTTONS (icon only)
+========================================= */
+#chatToggle,
+#themeColorToggle {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+/* hide the long text and the arrow; the icon + hover tooltip explain it */
+#chatToggle .chat-label,
+#themeColorToggle span,
+#themeColorToggle .fa-chevron-down {
+    display: none;
+}
+
+#chatToggle i {
+    font-size: 20px;
+}
+
+#themeColorToggle i {
+    font-size: 18px;
+}
+
+#chatToggle {
+    top: 25px;
+    right: 25px;
+}
+
+.theme-color-picker {
+    top: 25px;
+    right: 81px;           /* 25px edge + 46px button + 10px gap */
+}
+
+.theme-color-dropdown {
+    top: 56px;
+}
+
+@media (max-width: 600px) {
+
+    #chatToggle,
+    #themeColorToggle {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+    }
+
+    #chatToggle {
+        top: 15px;
+        right: 15px;
+    }
+
+    .theme-color-picker {
+        top: 15px;
+        right: 67px;       /* 15px edge + 42px button + 10px gap */
+    }
+
+    .theme-color-dropdown {
+        top: 52px;
+    }
+}
+
+
+/* =========================================
+   BODY FONT: Sora (headings keep their old fonts)
+========================================= */
+
+:root {
+    --body-font: 'Sora', 'Inter', sans-serif;
+}
+
+/* 1) Lock every heading to the font it had before.
+      Headings that already have their own font (Space Grotesk on the
+      name, section titles and logo) keep it, because those rules are
+      more specific than these plain tag selectors. */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+}
+
+/* 2) New font for all other text */
+body {
+    font-family: var(--body-font);
+}
+
+/* buttons and form fields do not inherit the body font by default */
+button, input, textarea, select {
+    font-family: inherit;
+}
+
+/* sidebar menu links had their own Inter rule */
+.nav-links a {
+    font-family: var(--body-font);
+}
+
+
+/* =========================================
+   PROJECT CARDS: tidy status badge + screenshot slot
+========================================= */
+.project-status {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 14px;
+    border: 1px dashed rgba(148, 163, 184, 0.55);
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    color: #94a3b8;
+}
+
+.project-shot {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+/* =========================================
+   TICKER STRIPS: use the visitor's chosen accent color
+   (one color instead of purple + cyan + blue)
+========================================= */
+.section-broadcast {
+    background: color-mix(in srgb, var(--visitor-accent, #60A5FA) 10%, transparent);
+    border-top-color: color-mix(in srgb, var(--visitor-accent, #60A5FA) 40%, transparent);
+    border-bottom-color: color-mix(in srgb, var(--visitor-accent, #60A5FA) 40%, transparent);
+}
+
+.section-broadcast-track span {
+    color: var(--visitor-accent, #60A5FA);
 }
